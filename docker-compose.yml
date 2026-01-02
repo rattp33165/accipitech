@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # 1. Backend (PHP-FPM)
+  app:
+    build:
+      context: ./helpdesk-backend
+      dockerfile: Dockerfile
+    container_name: helpdesk-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./helpdesk-backend:/var/www
+    networks:
+      - helpdesk-network
+
+  # 2. Web Server (Nginx) - ทำหน้าที่เสิร์ฟ Laravel
+  nginx:
+    image: nginx:alpine
+    container_name: helpdesk-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80" # เข้า Backend ผ่าน http://localhost:8000
+    volumes:
+      - ./helpdesk-backend:/var/www
+      - ./helpdesk-backend/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - helpdesk-network
+
+  # 3. Database (MySQL)
+  mysql:
+    image: mysql:8.0
+    container_name: helpdesk-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: helpdesk_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_PASSWORD: password
+      MYSQL_USER: user
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - helpdesk-network
+
+  # 4. Frontend (Vue.js)
+  frontend:
+    build:
+      context: ./helpdesk-frontend
+      dockerfile: Dockerfile
+    container_name: helpdesk-frontend
+    ports:
+      - "5173:5173" # เข้า Frontend ผ่าน http://localhost:5173
+    volumes:
+      - ./helpdesk-frontend:/app
+      - /app/node_modules
+    networks:
+      - helpdesk-network
+
+networks:
+  helpdesk-network:
+    driver: bridge
+
+volumes:
+  dbdata:

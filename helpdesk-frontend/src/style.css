@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  /* กำหนดตัวแปรสีใหม่ ให้ตรงกับ Mockup */
+  --color-dark-bg: #0f172a;   /* พื้นหลังหลัก */
+  --color-card-bg: #1e293b;   /* พื้นหลังการ์ด */
+  --color-input-bg: #334155;  /* พื้นหลังช่องกรอกข้อมูล */
+  --color-accent-blue: #3b82f6; /* สีปุ่ม/ไฮไลท์ */
+}
+
+/* บังคับให้ทั้งเว็บเป็นสีพื้นหลัง Dark Mode เสมอ */
+body {
+  background-color: var(--color-dark-bg);
+  color: #cbd5e1; /* สีตัวอักษรเทาอ่อน */
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+}
