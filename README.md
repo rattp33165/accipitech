@@ -79,8 +79,6 @@ The system comes with pre-seeded users for testing:
   - Dynamic Data: SLA Timer calculation based on priority and real-time form updates.
   - Dependency Dropdowns: Auto-fetch Vessels based on selected Organizat
 
-- **Dependency Dropdowns:** Auto-fetch Vessels based on selected Organization.
-
 ---
 
 **Author:** Mr. Rattapon Hongtanarat (Safe)
