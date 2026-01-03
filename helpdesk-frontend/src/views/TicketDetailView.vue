@@ -284,6 +284,8 @@ const validateForm = () => {
   if (!form.value.contact_email) return 'กรุณาระบุ Contact Email'
   if (!form.value.organization_id) return 'กรุณาเลือก Organization'
   if (!form.value.vessel_id) return 'กรุณาเลือก Vessel'
+  if (!form.value.assigned_to_user_id) return 'กรุณาเลือก Assigned To'
+  if (!form.value.priority) return 'กรุณาเลือก Priority'
   if (!form.value.category_id) return 'กรุณาเลือก Category'
   if (!form.value.service_line_id) return 'กรุณาเลือก Service Line'
   return null 

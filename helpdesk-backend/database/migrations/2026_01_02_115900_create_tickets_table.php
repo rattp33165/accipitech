@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->enum('priority', ['Low', 'Medium', 'High'])->default('Medium');
             $table->enum('status', ['Open', 'In Progress', 'Resolved', 'Closed'])->default('Open');
             $table->string('contact_email');
