@@ -57,15 +57,14 @@ class DatabaseSeeder extends Seeder
             'status' => 'Open',
             'contact_email' => 'mruser@gimm.ph',
             'cc_emails' => 'myboss@gimm.ph,support@it.com',
-            'organization_id' => $org1->id, // MOLSHP
-            'vessel_id' => $vessel1->id,    // MV Tenso
-            'service_line_id' => $sl1->id,  // Second
-            'category_id' => $cat1->id,     // Antivirus
-            'assigned_to_user_id' => null,  // Currently unassigned
-            'created_at' => now()->subHours(2), // สร้างย้อนหลังเพื่อให้เห็นเวลาผ่านไป
+            'organization_id' => $org1->id,
+            'vessel_id' => $vessel1->id,
+            'service_line_id' => $sl1->id,
+            'category_id' => $cat1->id,
+            'assigned_to_user_id' => $admin->id,
+            'created_at' => now()->subHours(2),
         ]);
 
-        // Ticket ใบที่ 2: สร้างเพิ่มให้ List ดูไม่โล่ง
         Ticket::create([
             'title' => 'Internet connection unstable on Bridge',
             'description' => 'The captain reports intermittent connection issues properly.',
@@ -77,11 +76,10 @@ class DatabaseSeeder extends Seeder
             'vessel_id' => $vessel2->id,
             'service_line_id' => $sl2->id,
             'category_id' => $cat2->id,
-            'assigned_to_user_id' => $staff->id, // Assign ให้ John Doe
+            'assigned_to_user_id' => $staff->id,
             'created_at' => now()->subDays(1),
         ]);
 
-         // Ticket ใบที่ 3
          Ticket::create([
             'title' => 'Printer jamming constantly',
             'description' => 'HP LaserJet in the control room needs service.',
@@ -91,7 +89,7 @@ class DatabaseSeeder extends Seeder
             'cc_emails' => 'myboss@gimm.ph,support@it.com, it@gimm.ph',
             'organization_id' => $org2->id,
             'vessel_id' => $vessel3->id,
-            'service_line_id' => $sl3->id,
+            'service_line_id' => $sl2->id,
             'category_id' => $cat3->id,
             'assigned_to_user_id' => $staff->id,
             'created_at' => now()->subDays(5),
